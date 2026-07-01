@@ -749,12 +749,12 @@
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: V7Q
+			Cache: W3B
 		</div>
 	</div>
 
 	<!-- Main content -->
-	<div style="flex: 1; overflow-y: auto; padding: 2rem 3rem; color: #E8E4DF;">
+	<div style="flex: 1; overflow-y: auto; padding: 2rem 3rem; color: #E8E4DF; font-size: 16px;">
 
 		{#if activeSection === 'typography'}
 		<section class="space-y-12">
