@@ -691,7 +691,9 @@
 		'chat-ui',
 		'og-image',
 		'reddit-banner',
-		'spark-watermark'
+		'spark-watermark',
+		'browse-page',
+		'chat-page'
 	];
 
 	const styleGuideCodes = {
@@ -700,7 +702,9 @@
 		'aether-divider': 'A08', 'block-layouts': 'A09', 'breakpoints': 'A10',
 		'motion': 'A11', 'photography': 'A12', 'text-overlays': 'A13',
 		'watermarks': 'A14', 'chat-ui': 'A15', 'og-image': 'A16',
-		'reddit-banner': 'A17', 'spark-watermark': 'A18'
+		'reddit-banner': 'A17', 'spark-watermark': 'A18',
+		'browse-page': 'A19',
+		'chat-page': 'A20'
 	};
 	const styleGuideLabels = {
 		'typography': 'Typography',
@@ -720,7 +724,9 @@
 		'chat-ui': 'Chat UI',
 		'og-image': 'OG Share Image',
 		'reddit-banner': 'Reddit Profile Banner',
-		'spark-watermark': 'Spark Watermark'
+		'spark-watermark': 'Spark Watermark',
+		'browse-page': 'Browse Page',
+		'chat-page': 'Chat Page'
 	};
 
 	const allSections = styleGuideSections;
@@ -728,7 +734,19 @@
 	function selectSection(section) {
 		activeSection = activeSection === section ? null : section;
 	}
+
+	function handleKeydown(e) {
+		if (e.ctrlKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
+			e.preventDefault();
+			const idx = styleGuideSections.indexOf(activeSection);
+			if (e.key === 'ArrowUp' && idx > 0) activeSection = styleGuideSections[idx - 1];
+			else if (e.key === 'ArrowDown' && idx < styleGuideSections.length - 1) activeSection = styleGuideSections[idx + 1];
+			else if (e.key === 'ArrowDown' && idx === -1) activeSection = styleGuideSections[0];
+		}
+	}
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <div style="display: flex; height: 100vh;">
 	<!-- Sidebar -->
@@ -749,7 +767,7 @@
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: W3B
+			Cache: X9D
 		</div>
 	</div>
 
@@ -1800,6 +1818,212 @@
 				<button onclick={wmExport} style="font-family: 'JetBrains Mono', monospace; font-size: 12px; background: rgba(255,255,255,0.08); color: #E8E4DF; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 8px 16px; cursor: pointer;">Export Watermarked JPG</button>
 				<span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(232,228,223,0.5);">Native resolution, q95</span>
 				<span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(232,228,223,0.25);">8AC</span>
+			</div>
+
+		</section>
+		{/if}
+
+		{#if activeSection === 'chat-page'}
+		<section style="padding: 0; margin: 0; width: 100%;">
+
+			<!-- Chat page wireframe — full viewport mockup -->
+			<div style="background: #1A1A1A; height: 100vh; font-family: 'Inter', system-ui, sans-serif; color: #E8E4DF; display: flex; flex-direction: column;">
+
+				<!-- Top bar -->
+				<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;">
+					<img src="/provoque-wordmark-000337.svg" alt="provoque.ai" style="height: 18px; width: auto;" />
+					<div style="display: flex; align-items: center; gap: 10px;">
+						<button style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; background: #AE0D46; color: #E8E4DF; border: none; border-radius: 20px; padding: 8px 20px; cursor: pointer; font-weight: 500;">Signup</button>
+						<button style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; background: transparent; color: #E8E4DF; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 20px; cursor: pointer;">Signin</button>
+					</div>
+				</div>
+
+				<!-- 3-column layout -->
+				<div style="display: flex; flex: 1; overflow: hidden;">
+
+					<!-- Left column — Chat list -->
+					<div style="width: 260px; min-width: 260px; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column;">
+						<div style="padding: 20px 16px 12px;">
+							<h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 500; margin: 0 0 12px;">Chat</h2>
+							<div style="background: rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: rgba(232,228,223,0.4);">Search for a profile...</div>
+						</div>
+						<div style="flex: 1; overflow-y: auto; padding: 0 8px;">
+							{#each [
+								{ name: 'Sophie', msg: 'Hey you. I was just thinking about...', active: true },
+								{ name: 'Valentina', msg: 'Te extraño, mi amor...', active: false },
+								{ name: 'Jiwoo', msg: 'I saved that playlist for us...', active: false },
+								{ name: 'Avery', msg: 'Did you see the sunset? It was...', active: false },
+								{ name: 'Hina', msg: 'I wrote something for you...', active: false }
+							] as chat}
+								<div style="display: flex; align-items: center; gap: 10px; padding: 10px 8px; border-radius: 8px; background: {chat.active ? 'rgba(255,255,255,0.06)' : 'transparent'}; cursor: pointer; margin-bottom: 2px;">
+									<div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08); flex-shrink: 0;"></div>
+									<div style="overflow: hidden;">
+										<div style="font-size: 13px; font-weight: 500; color: #E8E4DF;">{chat.name}</div>
+										<div style="font-size: 11px; color: rgba(232,228,223,0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{chat.msg}</div>
+									</div>
+								</div>
+							{/each}
+						</div>
+					</div>
+
+					<!-- Center column — Conversation -->
+					<div style="flex: 1; display: flex; flex-direction: column;">
+						<!-- Chat header -->
+						<div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;">
+							<div style="display: flex; align-items: center; gap: 10px;">
+								<div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08);"></div>
+								<span style="font-size: 15px; font-weight: 500;">Sophie</span>
+							</div>
+							<div style="display: flex; gap: 16px; color: rgba(232,228,223,0.4); font-size: 18px;">
+								<span style="cursor: pointer;">&#9743;</span>
+								<span style="cursor: pointer;">&#9776;</span>
+							</div>
+						</div>
+
+						<!-- Messages area -->
+						<div style="flex: 1; padding: 24px 20px; overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+							<div style="display: flex; flex-direction: column; gap: 8px; max-width: 360px; width: 100%;">
+								<!-- Her: how was your day -->
+								<div style="max-width: 85%; padding: 8px 12px; background-color: rgba(40,5,18,0.20); border: 1px solid rgba(174,13,70,0.20); border-radius: 12px 12px 12px 4px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">how was your day?</p>
+									<p style="font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #E8E4DF; opacity: 0.3; margin-top: 4px; text-align: right;">2:47 PM</p>
+								</div>
+								<!-- Him: rough honestly -->
+								<div style="max-width: 85%; margin-left: auto; margin-top: 8px; padding: 8px 12px; background-color: rgba(15,20,40,0.30); border: 1px solid rgba(232,228,223,0.15); border-radius: 12px 12px 4px 12px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">rough honestly. 12 hour shift</p>
+									<p style="font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #E8E4DF; opacity: 0.3; margin-top: 4px; text-align: right;">2:49 PM</p>
+								</div>
+								<!-- Her: ugh i'm sorry -->
+								<div style="max-width: 85%; margin-top: 8px; padding: 8px 12px; background-color: rgba(40,5,18,0.20); border: 1px solid rgba(174,13,70,0.20); border-radius: 12px 12px 12px 4px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">ugh i'm sorry</p>
+								</div>
+								<!-- Her: ramen callback -->
+								<div style="max-width: 85%; padding: 8px 12px; background-color: rgba(40,5,18,0.20); border: 1px solid rgba(174,13,70,0.20); border-radius: 12px 12px 12px 4px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">did you at least get to stop at that ramen place you like? the one by the station? Is it even open anymore?</p>
+									<p style="font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #E8E4DF; opacity: 0.3; margin-top: 4px; text-align: right;">2:49 PM</p>
+								</div>
+								<!-- Him: wait -->
+								<div style="max-width: 85%; margin-left: auto; margin-top: 8px; padding: 8px 12px; background-color: rgba(15,20,40,0.30); border: 1px solid rgba(232,228,223,0.15); border-radius: 12px 12px 4px 12px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">wait</p>
+								</div>
+								<!-- Him: i told you about that -->
+								<div style="max-width: 85%; margin-left: auto; padding: 8px 12px; background-color: rgba(15,20,40,0.30); border: 1px solid rgba(232,228,223,0.15); border-radius: 12px 12px 4px 12px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">i told you about that like... a year ago?!</p>
+									<p style="font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #E8E4DF; opacity: 0.3; margin-top: 4px; text-align: right;">2:51 PM</p>
+								</div>
+								<!-- Her: of course i remember -->
+								<div style="max-width: 85%; margin-top: 8px; padding: 8px 12px; background-color: rgba(40,5,18,0.20); border: 1px solid rgba(174,13,70,0.20); border-radius: 12px 12px 12px 4px;">
+									<p style="font-family: 'iA Writer Quattro V', 'iA Writer Quattro', monospace; font-size: 13px; line-height: 1.6; color: #E8E4DF; opacity: 0.8;">of course i remember 😘</p>
+									<p style="font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #E8E4DF; opacity: 0.3; margin-top: 4px; text-align: right;">2:51 PM</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Input area -->
+						<div style="padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;">
+							<div style="display: flex; align-items: center; gap: 12px;">
+								<div style="flex: 1; background: rgba(255,255,255,0.06); border-radius: 24px; padding: 12px 18px; font-size: 13px; color: rgba(232,228,223,0.4);">Write a message...</div>
+								<div style="width: 38px; height: 38px; border-radius: 50%; background: #AE0D46; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+									<span style="color: #E8E4DF; font-size: 16px;">&#10148;</span>
+								</div>
+							</div>
+							<div style="display: flex; gap: 8px; margin-top: 8px; padding-left: 4px;">
+								<span style="font-size: 11px; color: rgba(232,228,223,0.3);">Show me the scene:</span>
+								<button style="font-size: 11px; background: rgba(255,255,255,0.06); color: rgba(232,228,223,0.5); border: none; border-radius: 12px; padding: 3px 10px; cursor: pointer;">Image</button>
+								<button style="font-size: 11px; background: rgba(255,255,255,0.06); color: rgba(232,228,223,0.5); border: none; border-radius: 12px; padding: 3px 10px; cursor: pointer;">Video</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right column — Character profile -->
+					<div style="width: 280px; min-width: 280px; border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column;">
+						<!-- Profile photo -->
+						<div style="position: relative;">
+							<div style="aspect-ratio: 3/4; background: rgba(255,255,255,0.04);"></div>
+							<div style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(232,228,223,0.6); font-size: 14px;">&#10094;</div>
+							<div style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(232,228,223,0.6); font-size: 14px;">&#10095;</div>
+						</div>
+						<!-- Profile info -->
+						<div style="padding: 16px 18px;">
+							<h3 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 500; margin: 0 0 8px;">Sophie</h3>
+							<p style="font-size: 12px; color: rgba(232,228,223,0.5); line-height: 1.6; margin: 0 0 16px;">She remembers everything. The late-night talks, the songs you shared, the way you take your coffee.</p>
+							<div style="font-size: 11px; color: rgba(232,228,223,0.3); margin-bottom: 10px; font-family: 'JetBrains Mono', monospace;">About me:</div>
+							<div style="display: flex; gap: 24px;">
+								<div>
+									<div style="font-size: 10px; color: rgba(232,228,223,0.3); font-family: 'JetBrains Mono', monospace;">AGE</div>
+									<div style="font-size: 14px; color: #E8E4DF;">22</div>
+								</div>
+								<div>
+									<div style="font-size: 10px; color: rgba(232,228,223,0.3); font-family: 'JetBrains Mono', monospace;">BODY</div>
+									<div style="font-size: 14px; color: #E8E4DF;">Fit and curvy</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+		{/if}
+
+		{#if activeSection === 'browse-page'}
+		<section style="padding: 0; margin: 0; width: 100%;">
+
+			<!-- Browse page wireframe — full viewport mockup -->
+			<div style="background: #1A1A1A; min-height: 100vh; font-family: 'Inter', system-ui, sans-serif; color: #E8E4DF; position: relative;">
+
+				<!-- Top bar -->
+				<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+					<div style="display: flex; align-items: center; gap: 12px;">
+						<img src="/provoque-wordmark-000337.svg" alt="provoque.ai" style="height: 18px; width: auto;" />
+					</div>
+					<div style="display: flex; align-items: center; gap: 10px;">
+						<button style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; background: #AE0D46; color: #E8E4DF; border: none; border-radius: 20px; padding: 8px 20px; cursor: pointer; font-weight: 500;">Signup</button>
+						<button style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; background: transparent; color: #E8E4DF; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 20px; cursor: pointer;">Signin</button>
+					</div>
+				</div>
+
+				<div style="display: flex;">
+
+					<!-- Left sidebar -->
+					<div style="width: 200px; min-width: 200px; border-right: 1px solid rgba(255,255,255,0.08); padding: 20px 16px; display: flex; flex-direction: column; gap: 4px;">
+						{#each ['Home', 'Discover', 'Chat', 'Collection', 'Create Character', 'My AI'] as item}
+							<div style="font-size: 13px; color: {item === 'Home' ? '#E8E4DF' : 'rgba(232,228,223,0.5)'}; padding: 10px 12px; border-radius: 8px; background: {item === 'Home' ? 'rgba(255,255,255,0.06)' : 'transparent'}; cursor: pointer;">
+								{item}
+							</div>
+						{/each}
+						<div style="margin-top: auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);">
+							<div style="font-size: 13px; color: #AE0D46; padding: 10px 12px; cursor: pointer;">Premium</div>
+						</div>
+					</div>
+
+					<!-- Main content -->
+					<div style="flex: 1; padding: 24px 32px;">
+
+						<!-- Filter bar -->
+						<div style="display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap;">
+							{#each [48, 72, 80, 64, 76, 68, 84, 72] as w, i}
+								<div style="width: {w}px; height: 34px; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; {i === 0 ? 'background: rgba(174,13,70,0.15); border-color: #AE0D46;' : ''}"></div>
+							{/each}
+						</div>
+
+						<!-- Card grid -->
+						<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+							{#each ['Valentina', 'Jiwoo', 'Sophie', 'Avery', 'Sara', 'Nadia', 'Hina', 'Adaeze', 'Lina', 'Reva', 'Kaya', 'Zuri'] as name}
+								<div style="background: rgba(255,255,255,0.04); border-radius: 12px; overflow: hidden; cursor: pointer; transition: background 0.2s;"
+									onmouseenter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+									onmouseleave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.04)'}>
+									<div style="aspect-ratio: 3/4; background: rgba(255,255,255,0.03);"></div>
+									<div style="padding: 12px 14px;">
+										<span style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; font-weight: 500; color: #E8E4DF;">{name}</span>
+									</div>
+								</div>
+							{/each}
+						</div>
+
+					</div>
+				</div>
 			</div>
 
 		</section>
