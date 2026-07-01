@@ -695,24 +695,24 @@
 	];
 
 	const styleGuideLabels = {
-		'typography': 'Typography',
-		'colors': 'Colors',
-		'buttons': 'Buttons',
-		'spacing': 'Spacing',
-		'shimmers-glows': 'Shimmers & Glows',
-		'borders-shadows': 'Borders & Shadows',
-		'logos': 'Logos',
-		'aether-divider': 'Aether Divider',
-		'block-layouts': 'Block Layouts',
-		'breakpoints': 'Breakpoints',
-		'motion': 'Motion',
-		'photography': 'Photography Aesthetics',
-		'text-overlays': 'Text Overlays',
-		'watermarks': 'Watermarks',
-		'chat-ui': 'Chat UI',
-		'og-image': 'OG Share Image',
-		'reddit-banner': 'Reddit Profile Banner',
-		'spark-watermark': 'Spark Watermark'
+		'typography': 'a01 Typography',
+		'colors': 'a02 Colors',
+		'buttons': 'a03 Buttons',
+		'spacing': 'a04 Spacing',
+		'shimmers-glows': 'a05 Shimmers & Glows',
+		'borders-shadows': 'a06 Borders & Shadows',
+		'logos': 'a07 Logos',
+		'aether-divider': 'a08 Aether Divider',
+		'block-layouts': 'a09 Block Layouts',
+		'breakpoints': 'a10 Breakpoints',
+		'motion': 'a11 Motion',
+		'photography': 'a12 Photography Aesthetics',
+		'text-overlays': 'a13 Text Overlays',
+		'watermarks': 'a14 Watermarks',
+		'chat-ui': 'a15 Chat UI',
+		'og-image': 'a16 OG Share Image',
+		'reddit-banner': 'a17 Reddit Profile Banner',
+		'spark-watermark': 'a18 Spark Watermark'
 	};
 
 	const allSections = styleGuideSections;
@@ -741,7 +741,7 @@
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: R2M
+			Cache: T5N
 		</div>
 	</div>
 
