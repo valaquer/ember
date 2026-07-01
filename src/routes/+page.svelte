@@ -741,7 +741,7 @@
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: K4F
+			Cache: R2M
 		</div>
 	</div>
 
