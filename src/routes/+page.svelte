@@ -722,27 +722,30 @@
 	}
 </script>
 
-<div class="min-h-screen" style="background-color: #0B0D10; color: #E8E4DF;">
-
-	<!-- TOC -->
-	<div class="max-w-5xl mx-auto px-8 py-16 space-y-12">
-
-		<!-- Section A: Style Guide -->
-		<div>
-			<div class="flex flex-wrap gap-3">
-				{#each styleGuideSections as section}
-					<button
-						onclick={() => selectSection(section)}
-						class="px-5 py-3 rounded-lg font-body font-medium text-sm cursor-pointer transition-colors"
-						style="border: 1px solid rgba(255,255,255,0.15); {activeSection === section ? 'background-color: #AE0D46; color: #E8E4DF; border-color: #AE0D46;' : 'background-color: rgba(255,255,255,0.08); color: #E8E4DF;'}"
-					>{styleGuideLabels[section]}</button>
-				{/each}
+<div style="display: flex; height: 100vh;">
+	<!-- Sidebar -->
+	<div class="hb-sidebar">
+		<div class="hb-sidebar-scroll">
+			<div class="hb-sidebar-header">
+				<h2 class="hb-sidebar-header-text">Ember</h2>
 			</div>
+			{#each styleGuideSections as section}
+				<button
+					class="hb-sidebar-item"
+					class:active={activeSection === section}
+					onclick={() => selectSection(section)}
+				>
+					<span class="hb-sidebar-item-label">{styleGuideLabels[section]}</span>
+				</button>
+			{/each}
 		</div>
+		<div class="hb-sidebar-footer">
+			Cache: 8AC
+		</div>
+	</div>
 
-		<!-- ============================================================ -->
-		<!-- SECTION A: STYLE GUIDE CONTENT                               -->
-		<!-- ============================================================ -->
+	<!-- Main content -->
+	<div style="flex: 1; overflow-y: auto; padding: 2rem 3rem; color: #E8E4DF;">
 
 		{#if activeSection === 'typography'}
 		<section class="space-y-12">
