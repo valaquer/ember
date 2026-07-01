@@ -729,18 +729,19 @@
 			<div class="hb-sidebar-header">
 				<h2 class="hb-sidebar-header-text">Ember</h2>
 			</div>
-			{#each styleGuideSections as section}
+			{#each styleGuideSections as section, i}
 				<button
 					class="hb-sidebar-item"
 					class:active={activeSection === section}
 					onclick={() => selectSection(section)}
+					style="background: {activeSection === section ? 'var(--color-bg-element)' : (i % 2 === 1 ? 'rgba(255,255,255,0.02)' : 'transparent')};"
 				>
 					<span class="hb-sidebar-item-label">{styleGuideLabels[section]}</span>
 				</button>
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: 8AC
+			Cache: K4F
 		</div>
 	</div>
 
