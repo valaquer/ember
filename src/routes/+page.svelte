@@ -7,7 +7,7 @@
 	<div class="hb-sidebar">
 		<div class="hb-sidebar-scroll">
 			<div class="hb-sidebar-header">
-				<h2 class="hb-sidebar-header-text">Uember</h2>
+				<h2 class="hb-sidebar-header-text">Ember</h2>
 			</div>
 			<!-- Add sidebar items here -->
 		</div>
@@ -18,6 +18,6 @@
 
 	<!-- Main content -->
 	<div style="flex: 1; overflow-y: auto; padding: 2rem;">
-		<p style="color: var(--color-text-muted);">Uember is ready. Start building.</p>
+		<p style="color: var(--color-text-muted);">Ember is ready. Start building.</p>
 	</div>
 </div>
