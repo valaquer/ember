@@ -694,25 +694,33 @@
 		'spark-watermark'
 	];
 
+	const styleGuideCodes = {
+		'typography': 'A01', 'colors': 'A02', 'buttons': 'A03', 'spacing': 'A04',
+		'shimmers-glows': 'A05', 'borders-shadows': 'A06', 'logos': 'A07',
+		'aether-divider': 'A08', 'block-layouts': 'A09', 'breakpoints': 'A10',
+		'motion': 'A11', 'photography': 'A12', 'text-overlays': 'A13',
+		'watermarks': 'A14', 'chat-ui': 'A15', 'og-image': 'A16',
+		'reddit-banner': 'A17', 'spark-watermark': 'A18'
+	};
 	const styleGuideLabels = {
-		'typography': 'a01 Typography',
-		'colors': 'a02 Colors',
-		'buttons': 'a03 Buttons',
-		'spacing': 'a04 Spacing',
-		'shimmers-glows': 'a05 Shimmers & Glows',
-		'borders-shadows': 'a06 Borders & Shadows',
-		'logos': 'a07 Logos',
-		'aether-divider': 'a08 Aether Divider',
-		'block-layouts': 'a09 Block Layouts',
-		'breakpoints': 'a10 Breakpoints',
-		'motion': 'a11 Motion',
-		'photography': 'a12 Photography Aesthetics',
-		'text-overlays': 'a13 Text Overlays',
-		'watermarks': 'a14 Watermarks',
-		'chat-ui': 'a15 Chat UI',
-		'og-image': 'a16 OG Share Image',
-		'reddit-banner': 'a17 Reddit Profile Banner',
-		'spark-watermark': 'a18 Spark Watermark'
+		'typography': 'Typography',
+		'colors': 'Colors',
+		'buttons': 'Buttons',
+		'spacing': 'Spacing',
+		'shimmers-glows': 'Shimmers & Glows',
+		'borders-shadows': 'Borders & Shadows',
+		'logos': 'Logos',
+		'aether-divider': 'Aether Divider',
+		'block-layouts': 'Block Layouts',
+		'breakpoints': 'Breakpoints',
+		'motion': 'Motion',
+		'photography': 'Photography Aesthetics',
+		'text-overlays': 'Text Overlays',
+		'watermarks': 'Watermarks',
+		'chat-ui': 'Chat UI',
+		'og-image': 'OG Share Image',
+		'reddit-banner': 'Reddit Profile Banner',
+		'spark-watermark': 'Spark Watermark'
 	};
 
 	const allSections = styleGuideSections;
@@ -736,12 +744,12 @@
 					onclick={() => selectSection(section)}
 					style="background: {activeSection === section ? 'var(--color-bg-element)' : (i % 2 === 1 ? 'rgba(255,255,255,0.02)' : 'transparent')};"
 				>
-					<span class="hb-sidebar-item-label">{styleGuideLabels[section]}</span>
+					<span class="hb-sidebar-item-label"><span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #7a5e4a; margin-right: 8px;">{styleGuideCodes[section]}</span>{styleGuideLabels[section]}</span>
 				</button>
 			{/each}
 		</div>
 		<div class="hb-sidebar-footer">
-			Cache: T5N
+			Cache: V7Q
 		</div>
 	</div>
 
